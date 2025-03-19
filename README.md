@@ -1,12 +1,37 @@
-# React + Vite
+# Prueba Técnica: Desarrollo de una Plataforma de Tareas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+#### 📌 Objetivo
 
-Currently, two official plugins are available:
+El objetivo de esta prueba es evaluar tu capacidad para diseñar y desarrollar una interfaz intuitiva y bien estructurada utilizando React, Redux, Vite y Dark Mode. Queremos ver cómo organizas el código, la calidad del diseño y la experiencia de usuario que puedes ofrecer. Fue realizado para la empresa https://xira.ai/ como parte de la 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+#### 🏗 Descripción del Proyecto
 
-## Expanding the ESLint configuration
+Desarrolla una Plataforma de Gestión de Tareas en la que el usuario pueda:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 📌 Ver una lista de tareas (puedes precargar algunas para mostrar).
+- ✏ Agregar nuevas tareas con un formulario.
+- 🔄 Cambiar el estado de una tarea (Ejemplo: "pendiente", "en progreso", "completada").
+- ❌ Eliminar tareas.
+- 🌗 Activar/desactivar el modo oscuro en la interfaz.
+
+#### 🔧 Pasos de instalación y ejecución
+
+Como paso previo se debera clonar el repositorio en este [enlace](https://github.com/MarcoAlducinR5/task-platform-xiraai "enlace") usando el siguiente comando:
+
+```bash
+git clone git@github.com:MarcoAlducinR5/task-platform-xiraai.git
+```
+
+> ⚠️ **Nota**: Se recomienda tener una configuracion de clonacion via SSH por cuestiones de seguridad, para mas informacion visite este [enlace](https://docs.github.com/es/get-started/git-basics/about-remote-repositories#cloning-with-ssh-urls "enlace")
+
+Acto seguido debera descargar todas las dependencias usando:
+
+```bash
+npm install
+```
+
+Para ejecutar el proyecto de manera local, use el siguiente comando:
+
+```bash
+npm run dev
+```
