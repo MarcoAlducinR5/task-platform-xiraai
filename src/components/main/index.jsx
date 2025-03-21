@@ -1,154 +1,61 @@
-import { useSelector } from 'react-redux'
+import { TaskSearch } from './TaskSearch';
+import { TaskCounter } from './taskCounter';
+import { TaskList } from './taskList';
+import { TaskItem } from './taskItem';
+import { CreateTaskButton } from './createTaskButton';
 
 function Main() {
-    const stateDarkMode = useSelector(state => state.darkMode.value)
+    let listTask = [
+        {
+          task: 'Leslie Alexander',
+          state: true,
+        },
+        {
+          task: 'Michael Foster',
+          state: false,
+        },
+        {
+          task: 'Dries Vincent',
+          state: true,
+        },
+        {
+          task: 'Lindsay Walton',
+          state: false,
+        },
+        {
+          task: 'Courtney Henry',
+          state: true,
+        },
+        {
+          task: 'Tom Cook',
+          state: false,
+        },
+    ];
 
     return(
         <>
-            <main className='mt-[65.789px] mb-14 p-4'>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
-                <div className='border-2'>
-                    <div>
-                    <span className="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg">
-                        <svg className="h-6 w-6 stroke-white" >
-                        
-                        </svg>
-                    </span>
-                    </div>
-                    <h3 className={` mt-5 text-base font-medium tracking-tight `}>Writes upside-down</h3>
-                    <p className={`${stateDarkMode ? 'text-gray-500' : 'dark:text-gray-400'} mt-2 text-sm `}>
-                    The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
-                    </p>
-                </div>
+            <main className='mt-[65.789px] mb-14 sm:h-screen md:h-full p-4 text-center'>
+                {listTask.length === 0 
+                ? 
+                    <>
+                        <h2 className="py-2">Presione el boton para que registre una nueva tarea</h2>
+                    </>
+                : 
+                    <>
+                        <TaskCounter />
+
+                        <TaskSearch />
+
+                        <TaskList>
+                            {listTask.map((itemTask) => (
+                                <TaskItem item={itemTask.task} state={itemTask.state} />
+                            ))}
+                        </TaskList>
+                    </>
+                }
+
+                <CreateTaskButton />
+                
             </main>
         </>
     );
