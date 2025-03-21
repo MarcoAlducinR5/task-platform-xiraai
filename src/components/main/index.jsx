@@ -4,6 +4,8 @@ import { TaskList } from './taskList';
 import { TaskItem } from './taskItem';
 import { CreateTaskButton } from './createTaskButton';
 import { useSelector } from 'react-redux';
+import SentimentVeryDissatisfiedOutlinedIcon from '@mui/icons-material/SentimentVeryDissatisfiedOutlined';
+import { ModalAddTask } from './modalAddTask';
 
 function Main() {
 
@@ -19,15 +21,15 @@ function Main() {
       searchedTask = listTask;
     } else{
       searchedTask = listTask.filter (task => {
-        const todoText = task.text.toLowerCase();
+        const taskText = task.text.toLowerCase();
         const searchText = dateInputSearch.toLowerCase();
-        return todoText.includes(searchText);
+        return taskText.includes(searchText);
       });
     }
     
     return(
         <>
-            <main className='mt-[65.789px] mb-14 sm:h-screen md:h-full p-4 text-center'>
+            <main className='mt-[65.789px] mb-14 h-screen p-4 text-center'>
                 {listTask.length === 0 
                 ? 
                     <>
@@ -35,20 +37,46 @@ function Main() {
                     </>
                 : 
                     <>
-                        <TaskCounter completedTask={completedTask} totalTask={totalTask} />
+                        {dateInputSearch.length == 0 ? 
+                        <>
+                          <TaskCounter completedTask={completedTask} totalTask={totalTask} />
+                        </> 
+                        : 
+                        <>
+                          <h2 className="py-2">Se han encontado {searchedTask.length} coincidencia(s)</h2>
+                        </>}
 
                         <TaskSearch />
 
-                        <TaskList>
+                        {dateInputSearch.length == 0 ? 
+                        <>
+                          <TaskList>
                             {searchedTask.map((itemTask) => (
                                 <TaskItem item={itemTask.text} state={itemTask.completed} />
                             ))}
-                        </TaskList>
+                          </TaskList>
+                        </> 
+                        : 
+                        <>
+                          {searchedTask.length == 0 ? 
+                          <>
+                            <div></div>
+                          </> 
+                          : 
+                          <>
+                            <TaskList>
+                              {searchedTask.map((itemTask) => (
+                                  <TaskItem item={itemTask.text} state={itemTask.completed} />
+                              ))}
+                            </TaskList>
+                          </>}
+                        </>}
                     </>
                 }
 
                 <CreateTaskButton />
                 
+                <ModalAddTask />
             </main>
         </>
     );

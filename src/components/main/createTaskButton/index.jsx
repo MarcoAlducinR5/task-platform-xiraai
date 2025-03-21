@@ -1,12 +1,14 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { modalAddTask } from '../../../redux/actions/modalAddTaskSlice';
 
 function CreateTaskButton() {
 
     const stateDarkMode = useSelector(state => state.darkMode.value)
+    const dispatch = useDispatch()
 
     const openModal = () => {
-        alert("Hola")
+        dispatch(modalAddTask())
     };
 
     return (
