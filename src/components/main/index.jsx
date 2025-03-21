@@ -3,35 +3,28 @@ import { TaskCounter } from './taskCounter';
 import { TaskList } from './taskList';
 import { TaskItem } from './taskItem';
 import { CreateTaskButton } from './createTaskButton';
+import { useSelector } from 'react-redux';
 
 function Main() {
-    let listTask = [
-        {
-          task: 'Leslie Alexander',
-          state: true,
-        },
-        {
-          task: 'Michael Foster',
-          state: false,
-        },
-        {
-          task: 'Dries Vincent',
-          state: true,
-        },
-        {
-          task: 'Lindsay Walton',
-          state: false,
-        },
-        {
-          task: 'Courtney Henry',
-          state: true,
-        },
-        {
-          task: 'Tom Cook',
-          state: false,
-        },
-    ];
 
+    const listTask = useSelector(state => state.arrayTask.value)
+    const completedTask = listTask.filter( task => task.completed ).length;
+    const totalTask = listTask.length;
+
+    let searchedTask = [];
+
+    const dateInputSearch = useSelector(state => state.changeValueSearchTask.value)
+    
+    if(!dateInputSearch.length >= 1 ){
+      searchedTask = listTask;
+    } else{
+      searchedTask = listTask.filter (task => {
+        const todoText = task.text.toLowerCase();
+        const searchText = dateInputSearch.toLowerCase();
+        return todoText.includes(searchText);
+      });
+    }
+    
     return(
         <>
             <main className='mt-[65.789px] mb-14 sm:h-screen md:h-full p-4 text-center'>
@@ -42,13 +35,13 @@ function Main() {
                     </>
                 : 
                     <>
-                        <TaskCounter />
+                        <TaskCounter completedTask={completedTask} totalTask={totalTask} />
 
                         <TaskSearch />
 
                         <TaskList>
-                            {listTask.map((itemTask) => (
-                                <TaskItem item={itemTask.task} state={itemTask.state} />
+                            {searchedTask.map((itemTask) => (
+                                <TaskItem item={itemTask.text} state={itemTask.completed} />
                             ))}
                         </TaskList>
                     </>

@@ -1,7 +1,7 @@
-function TaskCounter() {
+function TaskCounter(props) {
     return (
         <>
-            <h2 className="py-2">Has completado 5 de 10 tareas</h2>
+            <h2 className="py-2">Has completado {props.completedTask} de {props.totalTask} tareas</h2>
         </>
     );
     
