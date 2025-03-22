@@ -35,3 +35,5 @@ Para ejecutar el proyecto de manera local, use el siguiente comando:
 ```bash
 npm run dev
 ```
+
+Si usted gusta visualizar este proyecto en tiempo real, lo invitamos a visitar el siguiente 👉[enlace](https://task-platform-xiraai.vercel.app/ "enlace")👈, de modo que el sitio es responsivo.
