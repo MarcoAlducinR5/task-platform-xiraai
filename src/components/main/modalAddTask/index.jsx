@@ -1,16 +1,14 @@
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalAddTask } from '../../../redux/actions/modalAddTaskSlice';
-
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import NewReleasesOutlinedIcon from '@mui/icons-material/NewReleasesOutlined';
-
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { changeValueNewTask } from '../../../redux/actions/changeValueNewTaskSlice';
-import { arrayTask } from '../../../redux/actions/arrayTaskSlice';
+import { useAddTask } from '../../../hooks/useAddTask';
 
-function ModalAddTask(){
+function ModalAddTask(props){
 
     const modal = useSelector(state => state.modalAddTask.value)
     const stateDarkMode = useSelector(state => state.darkMode.value)
@@ -22,29 +20,23 @@ function ModalAddTask(){
         dispatch(changeValueNewTask(event.target.value));
     };
 
-    const listTask = useSelector(state => state.arrayTask.value)
+    const [newArray] = useAddTask();
 
     const onSubmit = (event) => {
         event.preventDefault();
-        let newArray = [...listTask]
         
-        newArray.push({
-            text: dateInputNew,
-            completed: false,
-        });
-        
-        dispatch(arrayTask(newArray))
+        props.saveTaskModal(newArray)
         dispatch(changeValueNewTask(''));
         dispatch(modalAddTask())
     };
 
-    const onCancel = () => {
+    const closeModal = () => {
         dispatch(changeValueNewTask(''));
         dispatch(modalAddTask());
     };
 
     return ReactDOM.createPortal(
-        <Dialog open={modal} onClose={() => onCancel()} className="fixed  z-10">
+        <Dialog open={modal} onClose={() => closeModal()} className="fixed  z-10">
             <DialogBackdrop transition className="fixed inset-0 bg-gray-500/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in" />
     
             <div className="fixed bottom-60 md:bottom-0 inset-0 z-10 w-screen overflow-y-auto">
@@ -70,21 +62,25 @@ function ModalAddTask(){
                                     </div>
                                 </div>
                             </div>
-                            <div className={`${stateDarkMode ? 'bg-gray-100' : 'dark:bg-gray-700 dark:text-white'} px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 `}>
-                                <button
-                                type="submit"
-                                className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs hover:bg-green-500 sm:ml-3 sm:w-auto"
-                                >
-                                    <CheckCircleOutlineOutlinedIcon  />
-                                </button>
-                                <button
-                                type="button"
-                                data-autofocus
-                                onClick={() => onCancel()}
-                                className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs hover:bg-red-500 sm:ml-3 sm:w-auto"
-                                >
-                                    <CancelOutlinedIcon  />
-                                </button>
+                            <div className={`${stateDarkMode ? 'bg-gray-100' : 'dark:bg-gray-700 dark:text-white'} flex justify-around md:justify-end py-3 md:p-3`}>
+                                <div className='block ml-2'>
+                                    <button
+                                    type="submit"
+                                    className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs hover:bg-green-500 md:ml-3 sm:w-auto"
+                                    >
+                                        <CheckCircleOutlineOutlinedIcon  />
+                                    </button>
+                                </div>
+                                <div className='block ml-2'>
+                                    <button
+                                    type="button"
+                                    data-autofocus
+                                    onClick={() => closeModal()}
+                                    className="inline-flex w-full justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-xs hover:bg-red-500 md:ml-3 sm:w-auto"
+                                    >
+                                        <CancelOutlinedIcon  />
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </DialogPanel>

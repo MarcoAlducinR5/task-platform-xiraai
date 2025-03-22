@@ -2,9 +2,12 @@ import { useSelector } from 'react-redux'
 import { Header } from '../components/header';
 import { Main } from '../components/main';
 import { Footer } from '../components/footer';
+import {useLocalStorage} from '../hooks/useLocalStorage.js';
 
 function App() {
   const stateDarkMode = useSelector(state => state.darkMode.value)
+
+  useLocalStorage('TASK_V1');
 
   return (
     <>

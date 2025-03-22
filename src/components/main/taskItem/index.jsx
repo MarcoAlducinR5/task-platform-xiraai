@@ -1,38 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import { arrayTask } from '../../../redux/actions/arrayTaskSlice';
+import { useTaskActions } from '../../../hooks/useTaskActions';
 
 function TaskItem(props) {
 
     const stateDarkMode = useSelector(state => state.darkMode.value)
-    const listTask = useSelector(state => state.arrayTask.value)
 
-    const dispatch = useDispatch();
-
-    const onComplete = (item) => {
-        const tareaIndex = listTask.findIndex(task => task.text === item);
-        
-        let obj = Object.freeze(listTask[tareaIndex]);
-        obj = { text: obj.text, completed: !obj.completed };
-
-        let newArray = [...listTask]
-
-        newArray.splice(tareaIndex,1,obj)
-
-        dispatch(arrayTask(newArray))
-    };
-    
-    const onDelete = (item) => {
-        const tareaIndex = listTask.findIndex(task => task.text === item);
-
-        let newArray = [...listTask]
-
-        newArray.splice(tareaIndex,1)
-
-        dispatch(arrayTask(newArray))
-
-    };
+    const [onComplete, onDelete] = useTaskActions(props.saveTaskItem);
     
     return (
         <>

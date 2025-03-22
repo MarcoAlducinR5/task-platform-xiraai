@@ -4,28 +4,16 @@ import { TaskList } from './taskList';
 import { TaskItem } from './taskItem';
 import { CreateTaskButton } from './createTaskButton';
 import { useSelector } from 'react-redux';
-import SentimentVeryDissatisfiedOutlinedIcon from '@mui/icons-material/SentimentVeryDissatisfiedOutlined';
 import { ModalAddTask } from './modalAddTask';
+import { useSearchTask } from '../../hooks/useSearchTask';
 
 function Main() {
 
-    const listTask = useSelector(state => state.arrayTask.value)
+    const listTask = JSON.parse(useSelector(state => state.arrayTask.value))
     const completedTask = listTask.filter( task => task.completed ).length;
     const totalTask = listTask.length;
-
-    let searchedTask = [];
-
     const dateInputSearch = useSelector(state => state.changeValueSearchTask.value)
-    
-    if(!dateInputSearch.length >= 1 ){
-      searchedTask = listTask;
-    } else{
-      searchedTask = listTask.filter (task => {
-        const taskText = task.text.toLowerCase();
-        const searchText = dateInputSearch.toLowerCase();
-        return taskText.includes(searchText);
-      });
-    }
+    const [searchedTask, saveTask] = useSearchTask();
     
     return(
         <>
@@ -52,7 +40,7 @@ function Main() {
                         <>
                           <TaskList>
                             {searchedTask.map((itemTask) => (
-                                <TaskItem item={itemTask.text} state={itemTask.completed} />
+                                <TaskItem saveTaskItem={saveTask} item={itemTask.text} state={itemTask.completed} />
                             ))}
                           </TaskList>
                         </> 
@@ -66,7 +54,7 @@ function Main() {
                           <>
                             <TaskList>
                               {searchedTask.map((itemTask) => (
-                                  <TaskItem item={itemTask.text} state={itemTask.completed} />
+                                  <TaskItem saveTaskItem={saveTask} item={itemTask.text} state={itemTask.completed} />
                               ))}
                             </TaskList>
                           </>}
@@ -76,11 +64,10 @@ function Main() {
 
                 <CreateTaskButton />
                 
-                <ModalAddTask />
+                <ModalAddTask saveTaskModal={saveTask} />
             </main>
         </>
     );
-    
 }
 
 export {Main}
